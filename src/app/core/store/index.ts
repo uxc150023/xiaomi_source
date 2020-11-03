@@ -1,20 +1,35 @@
 import { Message } from "element-ui";
 import Vue from "vue";
 import Vuex from "vuex";
+import { AccountInfo } from "../admain/AccountInfo";
+import { Sidebar } from "../admain/Sidebar";
 import { LOGIN_INFO } from "../constants";
-import { SET_ACCOUNT_INFO, SET_PROJECT_NAME } from "./mutationTypes";
+import {
+  SET_ACCOUNT_INFO,
+  SET_PROJECT_NAME,
+  SET_SIDEBAR,
+} from "./mutationTypes";
 
 Vue.use(Vuex);
 
-const state = {
-  accountInfo: {},
+export interface IState {
+  [key: string]: any;
+  accountInfo: AccountInfo;
+  sidebar: Sidebar;
+  projectName: string;
+}
+
+const stateX: IState = {
+  accountInfo: new AccountInfo(),
   projectName: "",
+  sidebar: new Sidebar(),
 };
+
 const info = localStorage.getItem(LOGIN_INFO);
 if (info) {
   try {
     const accountInfo = JSON.parse(info);
-    state.accountInfo = accountInfo;
+    stateX.accountInfo = accountInfo;
   } catch (error) {
     Message.error(error);
   }
@@ -28,6 +43,9 @@ export default new Vuex.Store<any>({
     [SET_PROJECT_NAME](store, val) {
       store.projectName = val;
     },
+    [SET_SIDEBAR](store, val) {
+      store.sidebar = val;
+    },
   },
-  state,
+  state: stateX,
 });

@@ -12,10 +12,10 @@ export default class BasePage extends ComBaseComp {
     next((vm: Vue) => {
       // 验证登录
       if (!headerToken) {
-        vm.$router.replace({
-          name: "loginReturn",
-          params: { return: encodeURIComponent(to.fullPath) },
-        });
+        // vm.$router.replace({
+        //   name: "loginReturn",
+        //   params: { return: encodeURIComponent(to.fullPath) },
+        // });
       }
     });
   }

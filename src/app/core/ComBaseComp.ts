@@ -9,9 +9,25 @@ import {
   Vue,
   Watch,
 } from "vue-property-decorator";
+import { mapState } from "vuex";
+import store from "./store";
 
-@Component({})
+@Component({
+  computed: { ...mapState(["sidebar", "accountInfo", "projectName"]) },
+})
 export class ComBaseComp extends Vue {
+  get sidebar() {
+    return store.state.sidebar;
+  }
+
+  get accountInfo() {
+    return store.state.accountInfo;
+  }
+
+  get projectName() {
+    return store.state.projectName;
+  }
+
   messageError(error: any) {
     if (error === "cancel" || error === "close" || !error) {
       return;

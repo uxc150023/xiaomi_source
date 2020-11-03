@@ -129,9 +129,9 @@ const webpackConfig = {
       ],
       disableDotRule: true,
     },
-    host: "0.0.0.0",
+    host: "127.0.0.1",
     hot: true,
-    port: 8080,
+    port: 8081,
     publicPath,
     contentBase: path.resolve(__dirname, "dist"),
   },
@@ -158,6 +158,15 @@ const webpackConfig = {
       SITE_INFO,
       publicPath: publicPath,
       favicon: path.resolve(__dirname, "src/app/favicon.png"),
+      // pluginOptions: {
+      //   "style-resources-loader": {
+      //     preProcessor: "scss",
+      //     patterns: [
+      //       path.resolve(__dirname, "src/app/styles/_variables.scss"),
+      //       path.resolve(__dirname, "src/aap/styles/_mixins.scss"),
+      //     ],
+      //   },
+      // },
     }),
     new CheckerPlugin(),
     new VueLoaderPlugin(),

@@ -1,14 +1,17 @@
 @import "./var.scss";
+@import "./_transition.scss";
 @import "~element-ui/packages/theme-chalk/src/index";
 
-.modal-form{
-  .el-dialog__body{
+.modal-form {
+  .el-dialog__body {
     padding: 20px 30px;
   }
 }
 
-.form-long-width{
-  .el-input, .el-select, .el-cascader{
-    width: 100%
+.form-long-width {
+  .el-input,
+  .el-select,
+  .el-cascader {
+    width: 100%;
   }
 }

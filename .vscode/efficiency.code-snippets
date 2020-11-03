@@ -1,0 +1,49 @@
+{
+  "Try catch message": {
+    "scope": "typescript",
+    "prefix": "trymsg",
+    "body": [
+      "try {",
+      "\t$1",
+      "} catch (error) {",
+      "\tthis.messageError(error);",
+      "}"
+    ],
+    "description": "捕获错误并弹窗提示"
+  },
+  "Async Fetch": {
+    "scope": "typescript",
+    "prefix": "asyncFetch",
+    "body": [
+      "async fetch$1(){",
+      "\ttry {",
+      "\t\tawait $2",
+      "\t} catch (error) {",
+      "\t\tthis.messageError(error);",
+      "\t}",
+      "}"
+    ],
+    "description": "异步获取数据的方法"
+  },
+  "Entity Class": {
+    "scope": "typescript",
+    "prefix": "exportClass",
+    "body": ["export class $1{", "\t$2", "}"],
+    "description": "创建实体类"
+  },
+  "Router Link in Template": {
+    "prefix": "routerLink",
+    "body": "<router-link :to=\"{ name: '$1', params: { $2 }}\">$3</router-link>",
+    "description": "路由调整连接"
+  },
+  "Scope Row": {
+    "prefix": "scope",
+    "body": "{{ scope.row.$1 }}",
+    "description": "作用域数据读取"
+  },
+  "Scope Row Time": {
+    "prefix": "scopeTime",
+    "body": "{{ scope.row.$1 | date(\"YYYY-MM-DD\") }}",
+    "description": "作用域时间数据读取"
+  }
+}

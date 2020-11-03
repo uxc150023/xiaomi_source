@@ -1,6 +1,6 @@
 import ElementUI from "element-ui";
 import Vue from "vue";
-import VueRouter from "vue-router";
+import VueRouter, { Route } from "vue-router";
 import { ConfigAdapter } from "../lib/sg-resource";
 import app from "./app.vue";
 import "./components/factory.comp";
@@ -21,7 +21,7 @@ Vue.$sg.configAdapter.env = env;
 Vue.$sg.configAdapter.sites = sites;
 
 const main = new Vue({
-  render: h => h(app),
+  render: (h) => h(app),
   router,
   store,
 }).$mount("#app");

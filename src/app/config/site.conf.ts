@@ -19,7 +19,7 @@ serverConfig.failCallback = (res: any, resolve, reject) => {
     localStorage.removeItem(LOGIN_INFO);
     const nextPath = (window as any).__SWNextFullPath;
     if (nextPath.indexOf("/login") === -1) {
-      location.href = "/login";
+      // location.href = "/login";
     }
   } else {
     reject(res);

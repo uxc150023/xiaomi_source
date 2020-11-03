@@ -12,6 +12,9 @@ export const apiConfig: IApiConfig = {
   },
   get: {
     // SGV-BUILD-API-GET # NOT DELETE
+    // ----------------------------------登录-----------------------------
+    // 获取code
+    loginCode: "apiHost:/api/login/code",
   },
   put: {
     // SGV-BUILD-API-PUT # NOT DELETE
