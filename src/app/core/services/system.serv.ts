@@ -3,6 +3,7 @@ import { BaseService } from "./base.serv";
 export interface ISystemService {
   // SGV-BUILD-SERVICE-INTERFACE # NOT DELETE
   login(userName: string, password: string): Promise<any>;
+  doLogin(params: any): Promise<any>;
   loginCode(): Promise<any>;
 }
 
@@ -22,7 +23,10 @@ export class SystemService extends BaseService implements ISystemService {
   public login(userName: string, password: string): Promise<any> {
     return this.proxyHttp.post("login", { userName, password });
   }
+  public doLogin(params: any): Promise<any> {
+    return this.proxyHttp.post("doLogin", params);
+  }
   public loginCode(): Promise<any> {
-    return this.proxyHttp.post("loginCode", {});
+    return this.proxyHttp.get("loginCode", {});
   }
 }

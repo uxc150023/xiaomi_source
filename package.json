@@ -18,7 +18,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "axios-mock-adapter": "^1.15.0",
-    "element-ui": "^2.4.6",
+    "element-ui": "^2.14.0",
     "es6-promise": "^4.2.6",
     "moment": "^2.24.0",
     "nprogress": "^0.2.0",

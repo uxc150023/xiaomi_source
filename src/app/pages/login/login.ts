@@ -1,3 +1,4 @@
+import { timeStamp } from "console";
 import { Input } from "element-ui";
 import { ElForm } from "element-ui/types/form";
 import Vue from "vue";
@@ -30,10 +31,14 @@ export default class LoginPage extends mixins(BasePage) implements ILoginPage {
   otherQuery: Dictionary<string> = {};
   codeSvgUrl: string = "";
   loginForm: any = {
-    password: "111111",
-    username: "admin",
+    loginCode: "",
+    password: "",
+    username: "",
   };
   loginRules: any = {
+    loginCode: [
+      { required: true, message: "请输入登录验证码", trigger: "blur" },
+    ],
     password: [{ required: true, message: "请输入您的密码", trigger: "blur" }],
     userName: [
       {
@@ -63,6 +68,7 @@ export default class LoginPage extends mixins(BasePage) implements ILoginPage {
     } else if (this.loginForm.password === "") {
       (this.$refs.password as Input).focus();
     }
+    // this.getLoginCode();
   }
 
   private showPwd() {
@@ -81,6 +87,7 @@ export default class LoginPage extends mixins(BasePage) implements ILoginPage {
       if (valid) {
         this.loading = true;
         console.log(this.loginForm);
+        const res = await this.systemService.doLogin(this.loginForm);
         // const res = await this
         // await UserModule.Login(this.loginForm);
         // this.$router.push({
