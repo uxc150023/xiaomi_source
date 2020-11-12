@@ -64,10 +64,10 @@
               />
             </div>
             <img
-              src="http://localhost:3000/admin/login/code"
+              src="http://127.0.0.1:3000/admin/login/code"
               title="看不清？点击刷新"
               type="image/svg+xml"
-              onclick="javascript:this.src='http://localhost:3000/admin/login/code?t='+Math.random()"
+              onclick="javascript:this.src='http://127.0.0.1:3000/admin/login/code?t='+Math.random()"
             />
           </div>
         </el-form-item>

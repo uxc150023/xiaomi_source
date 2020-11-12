@@ -1,8 +1,8 @@
 var __sg_site_config__ = {
   DEV: {
-    remote: "localhost:3000",
+    remote: "127.0.0.1:3000",
     otherRemotes: {
-      user: "localhost:3000",
+      user: "127.0.0.1:3000",
     },
     local: "192.168.1.100:8080",
     entrance: "http://dev.domain.name:8080/login",

@@ -85,7 +85,7 @@ export default class LoginPage extends mixins(BasePage) implements ILoginPage {
   private handleLogin() {
     (this.$refs.loginForm as ElForm).validate(async (valid: boolean) => {
       if (valid) {
-        this.loading = true;
+        // this.loading = true;
         console.log(this.loginForm);
         const res = await this.systemService.doLogin(this.loginForm);
         // const res = await this
@@ -112,11 +112,14 @@ export default class LoginPage extends mixins(BasePage) implements ILoginPage {
   }
 
   private getOtherQuery(query: Dictionary<string>) {
-    return Object.keys(query).reduce((acc, cur) => {
-      if (cur !== "redirect") {
-        acc[cur] = query[cur];
-      }
-      return acc;
-    }, {} as Dictionary<string>);
+    return Object.keys(query).reduce(
+      (acc, cur) => {
+        if (cur !== "redirect") {
+          acc[cur] = query[cur];
+        }
+        return acc;
+      },
+      {} as Dictionary<string>,
+    );
   }
 }
