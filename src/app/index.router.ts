@@ -16,7 +16,7 @@ const routes: RouteConfig[] = [
     redirect: "/dashboard",
     children: [
       {
-        path: "dashboard",
+        path: "/dashboard",
         component: PageFactory.dashboardPagePreloading,
         meta: {
           title: "首页",

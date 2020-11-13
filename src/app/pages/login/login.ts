@@ -83,24 +83,30 @@ export default class LoginPage extends mixins(BasePage) implements ILoginPage {
   }
 
   private handleLogin() {
-    (this.$refs.loginForm as ElForm).validate(async (valid: boolean) => {
-      if (valid) {
-        // this.loading = true;
-        console.log(this.loginForm);
-        const res = await this.systemService.doLogin(this.loginForm);
-        // const res = await this
-        // await UserModule.Login(this.loginForm);
-        // this.$router.push({
-        //   path: this.redirect || "/",
-        //   query: this.otherQuery,
-        // });
-        // setTimeout(() => {
-        //   this.loading = false;
-        // }, 0.5 * 1000);
-      } else {
-        return false;
-      }
-    });
+    try {
+      (this.$refs.loginForm as ElForm).validate(async (valid: boolean) => {
+        if (valid) {
+          try {
+            // this.loading = true;
+            const res = await this.systemService.doLogin(this.loginForm);
+            // const res = await this
+            // await UserModule.Login(this.loginForm);
+            console.log(this.redirect);
+            this.$router.push({
+              path: this.redirect || "/",
+              query: this.otherQuery,
+            });
+            // this.loading = false;
+          } catch (error) {
+            this.messageError(error);
+          }
+        } else {
+          return false;
+        }
+      });
+    } catch (error) {
+      this.messageError(error);
+    }
   }
   private async getLoginCode() {
     try {
