@@ -32,7 +32,7 @@ export default class BreadcrumbComp extends Vue {
     const first = matched[0];
     if (!this.isDashboard(first)) {
       matched = [
-        { path: "/dashboard", meta: { title: "Dashboard" } } as RouteRecord,
+        { path: "/dashboard", meta: { title: "首页" } } as RouteRecord,
         ...matched,
       ];
     }

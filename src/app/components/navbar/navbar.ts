@@ -9,13 +9,19 @@ import {
   Vue,
   Watch,
 } from "vue-property-decorator";
+import { AutowiredService } from "../../../lib/sg-resource/decorators";
+import { AccountInfo } from "../../core/admain/AccountInfo";
 import { ComBaseComp } from "../../core/ComBaseComp";
+import { SystemService } from "../../core/services/system.serv";
 import { SET_SIDEBAR } from "../../core/store/mutationTypes";
 
 @Component({
   components: {},
 })
 export default class NavbarComp extends mixins(ComBaseComp) {
+  @AutowiredService
+  systemService: SystemService;
+
   private isActive: boolean = false;
 
   // get avatar() {
@@ -35,7 +41,13 @@ export default class NavbarComp extends mixins(ComBaseComp) {
   }
 
   private async logout() {
-    // await UserModule.LogOut();
-    this.$router.push(`/login?redirect=${this.$route.fullPath}`);
+    try {
+      await this.systemService.logOut(this.accountInfo.user_id);
+      sessionStorage.clear();
+      this.$store.state.accountInfo = new AccountInfo();
+      this.$router.push(`/login?redirect=${this.$route.fullPath}`);
+    } catch (error) {
+      this.messageError(error);
+    }
   }
 }

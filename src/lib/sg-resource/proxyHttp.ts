@@ -5,7 +5,7 @@ import { ICommon } from "./common";
 import { IConfigAdapter, IMockData } from "./config";
 import { SGVFactory } from "./factory";
 
-export const HEADER_TOKEN = "HEADER_TOKEN_SSU";
+export const HEADER_TOKEN = "HEADER_TOKEN";
 export const PRODUCT_CODE = "PRODUCT_CODE";
 
 export interface IProxyHttp {
@@ -141,13 +141,11 @@ export class ProxyHttp implements IProxyHttp {
             ].join(","),
           });
         });
-        const headerToken = localStorage.getItem(HEADER_TOKEN);
-        const productCode = localStorage.getItem(PRODUCT_CODE);
+        const headerToken = sessionStorage.getItem(HEADER_TOKEN);
+        const productCode = sessionStorage.getItem(PRODUCT_CODE);
         // const headerToken = "829633E762F041D7800073258AAA3BA3";
         config.headers["access-token"] =
           config.headers["access-token"] || headerToken || "";
-        config.headers["product-code"] =
-          config.headers["product-code"] || productCode || "ssu-service";
         config.headers.version = config.headers.version || "1.0.0";
         return config;
       },

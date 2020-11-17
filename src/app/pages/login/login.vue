@@ -15,31 +15,31 @@
           </h3>
         </div>
 
-        <el-form-item prop="username">
+        <el-form-item prop="userName">
           <span class="svg-container">
             <i class="el-icon-s-custom" style="font-size: 20px;"></i>
           </span>
           <el-input
-            ref="username"
-            v-model="loginForm.username"
-            name="username"
+            ref="userName"
+            v-model="loginForm.userName"
+            name="userName"
             type="text"
             autocomplete="on"
-            placeholder="username"
+            placeholder="userName"
           />
         </el-form-item>
 
-        <el-form-item prop="password">
+        <el-form-item prop="passWord">
           <span class="svg-container">
             <i class="el-icon-lock" style="font-size: 20px"></i>
           </span>
           <el-input
-            :key="passwordType"
-            ref="password"
-            v-model="loginForm.password"
-            :type="passwordType"
-            placeholder="password"
-            name="password"
+            :key="passWordType"
+            ref="passWord"
+            v-model="loginForm.passWord"
+            :type="passWordType"
+            placeholder="passWord"
+            name="passWord"
             autocomplete="on"
             @keyup.enter.native="handleLogin"
           />

@@ -62,7 +62,7 @@ export default class AccountSettings extends mixins(ComBaseComp) {
         });
         break;
       case "exit":
-        localStorage.clear();
+        sessionStorage.clear();
         // console.log(this.$root);
         // this.$store.commit(SET_HAS_HEADBAR, false);
         this.$router.push({

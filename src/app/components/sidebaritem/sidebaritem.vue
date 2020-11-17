@@ -15,7 +15,11 @@
         >
           <el-menu-item
             :index="resolvePath(theOnlyOneChild.path)"
-            :class="{ 'submenu-title-noDropdown': isFirstLevel }"
+            :class="{
+              'submenu-title-noDropdown': isFirstLevel,
+              'is-active':
+                $route.meta.active === resolvePath(theOnlyOneChild.path),
+            }"
           >
             <i
               v-if="theOnlyOneChild.meta.icon"
@@ -74,6 +78,9 @@ $color: #333;
 @import "../../styles/_variables.scss";
 .el-submenu.is-active > .el-submenu__title {
   color: $subMenuActiveText !important;
+}
+.is-active {
+  color: rgb(64, 158, 255) !important;
 }
 
 .full-mode {

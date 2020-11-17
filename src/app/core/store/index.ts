@@ -5,6 +5,7 @@ import { AccountInfo } from "../admain/AccountInfo";
 import { Sidebar } from "../admain/Sidebar";
 import { LOGIN_INFO } from "../constants";
 import {
+  HEADER_TOKEN,
   SET_ACCOUNT_INFO,
   SET_PROJECT_NAME,
   SET_SIDEBAR,
@@ -25,7 +26,7 @@ const stateX: IState = {
   sidebar: new Sidebar(),
 };
 
-const info = localStorage.getItem(LOGIN_INFO);
+const info = sessionStorage.getItem(LOGIN_INFO);
 if (info) {
   try {
     const accountInfo = JSON.parse(info);
@@ -39,6 +40,8 @@ export default new Vuex.Store<any>({
   mutations: {
     [SET_ACCOUNT_INFO](store, val) {
       store.accountInfo = val;
+      sessionStorage.setItem(LOGIN_INFO, JSON.stringify(val));
+      sessionStorage.setItem(HEADER_TOKEN, val.accessToken);
     },
     [SET_PROJECT_NAME](store, val) {
       store.projectName = val;

@@ -8,7 +8,7 @@ import { ComBaseComp } from "../core/ComBaseComp";
 export default class BasePage extends ComBaseComp {
   /* 生命钩子 START */
   beforeRouteEnter(to: Route, from: Route, next: any) {
-    const headerToken = localStorage.getItem(HEADER_TOKEN);
+    const headerToken = sessionStorage.getItem(HEADER_TOKEN);
     next((vm: Vue) => {
       // 验证登录
       if (!headerToken) {

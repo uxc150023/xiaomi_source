@@ -21,6 +21,7 @@ const routes: RouteConfig[] = [
         meta: {
           title: "首页",
           icon: "el-icon-platform-eleme",
+          active: "/dashboard",
         },
       },
     ],
@@ -35,6 +36,7 @@ const routes: RouteConfig[] = [
         meta: {
           title: "home",
           icon: "el-icon-s-data",
+          active: "/home/index",
         },
       },
     ],

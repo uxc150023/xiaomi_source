@@ -14,8 +14,8 @@ interface IDashboardPage {
   components: {},
   name: "dashboard",
 })
-export default class DashboardPage extends mixins(BasePage) implements IDashboardPage {
-
+export default class DashboardPage extends mixins(BasePage)
+  implements IDashboardPage {
   title: string = "Dashboard";
 
   fetchData() {

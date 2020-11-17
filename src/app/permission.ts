@@ -11,7 +11,6 @@ const whiteList = ["/login"];
 
 router.beforeEach(async (to: Route, _: Route, next: any) => {
   NProgress.start();
-
   if (store.state.accountInfo.accessToken) {
     if (to.path === "/login") {
       next({ path: "/" });

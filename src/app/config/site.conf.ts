@@ -14,12 +14,12 @@ export const serverConfig: IServerConfig = {
 };
 
 serverConfig.failCallback = (res: any, resolve, reject) => {
-  if (res.errorCode === 1003 && res.subCode === 1001) {
-    localStorage.removeItem(HEADER_TOKEN);
-    localStorage.removeItem(LOGIN_INFO);
+  if ((res.errorCode === 1003 && res.subCode === 1001) || res.code === 2) {
+    sessionStorage.removeItem(HEADER_TOKEN);
+    sessionStorage.removeItem(LOGIN_INFO);
     const nextPath = (window as any).__SWNextFullPath;
     if (nextPath.indexOf("/login") === -1) {
-      // location.href = "/login";
+      location.href = "/login";
     }
   } else {
     reject(res);

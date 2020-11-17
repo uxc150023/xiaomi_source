@@ -8,6 +8,8 @@ import { Route } from "vue-router";
 import { Dictionary } from "vue-router/types/router";
 import { AutowiredService } from "../../../lib/sg-resource/decorators";
 import { SystemService } from "../../core/services/system.serv";
+import store from "../../core/store";
+import { SET_ACCOUNT_INFO } from "../../core/store/mutationTypes";
 import BasePage from "../BasePage";
 interface ILoginPage {
   /**
@@ -24,7 +26,7 @@ export default class LoginPage extends mixins(BasePage) implements ILoginPage {
   @AutowiredService
   systemService: SystemService;
 
-  passwordType: string = "password";
+  passWordType: string = "passWord";
   loading: boolean = false;
   showDialog: boolean = false;
   redirect: string;
@@ -32,14 +34,14 @@ export default class LoginPage extends mixins(BasePage) implements ILoginPage {
   codeSvgUrl: string = "";
   loginForm: any = {
     loginCode: "",
-    password: "",
-    username: "",
+    passWord: "",
+    userName: "",
   };
   loginRules: any = {
     loginCode: [
       { required: true, message: "请输入登录验证码", trigger: "blur" },
     ],
-    password: [{ required: true, message: "请输入您的密码", trigger: "blur" }],
+    passWord: [{ required: true, message: "请输入您的密码", trigger: "blur" }],
     userName: [
       {
         message: "请输入您的用户名/手机/邮箱",
@@ -63,22 +65,22 @@ export default class LoginPage extends mixins(BasePage) implements ILoginPage {
   }
 
   mounted() {
-    if (this.loginForm.username === "") {
-      (this.$refs.username as Input).focus();
-    } else if (this.loginForm.password === "") {
-      (this.$refs.password as Input).focus();
+    if (this.loginForm.userName === "") {
+      (this.$refs.userName as Input).focus();
+    } else if (this.loginForm.passWord === "") {
+      (this.$refs.passWord as Input).focus();
     }
     // this.getLoginCode();
   }
 
   private showPwd() {
-    if (this.passwordType === "password") {
-      this.passwordType = "";
+    if (this.passWordType === "passWord") {
+      this.passWordType = "";
     } else {
-      this.passwordType = "password";
+      this.passWordType = "passWord";
     }
     this.$nextTick(() => {
-      (this.$refs.password as Input).focus();
+      (this.$refs.passWord as Input).focus();
     });
   }
 
@@ -89,9 +91,7 @@ export default class LoginPage extends mixins(BasePage) implements ILoginPage {
           try {
             // this.loading = true;
             const res = await this.systemService.doLogin(this.loginForm);
-            // const res = await this
-            // await UserModule.Login(this.loginForm);
-            console.log(this.redirect);
+            store.commit(SET_ACCOUNT_INFO, res);
             this.$router.push({
               path: this.redirect || "/",
               query: this.otherQuery,
