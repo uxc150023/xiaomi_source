@@ -6,9 +6,10 @@
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
         :active-text-color="variables.menuActiveText"
-        :unique-opened="false"
+        :unique-opened="true"
         :collapse-transition="false"
         mode="vertical"
+        :default-active="$route.meta.active"
       >
         <sidebaritem
           v-for="route in routes"

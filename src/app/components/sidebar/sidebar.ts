@@ -32,7 +32,6 @@ export default class SidebarComp extends mixins(ComBaseComp) {
   }
   /* 生命钩子 START */
   mounted() {
-    //
     console.log("===", (this.$router as any).options.routes);
   }
 }
