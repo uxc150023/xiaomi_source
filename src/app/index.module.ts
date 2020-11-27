@@ -5,6 +5,7 @@ import { ConfigAdapter } from "../lib/sg-resource";
 import app from "./app.vue";
 import "./components/factory.comp";
 import Common from "./core/common";
+import "./core/filter";
 import store from "./core/store";
 import router from "./index.router";
 import "./styles/common.scss";

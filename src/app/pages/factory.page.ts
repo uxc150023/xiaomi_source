@@ -1,4 +1,18 @@
 // SGV-BUILD-PAGE-FAC # NOT DELETE
+// 'Addrole' PAGE FACTORY START
+export function addrolePagePreloading(): Promise<any> {
+  return import("./role/addrole/addrole.vue").catch((error) => {
+    return dealOccurred(error, "Addrole");
+  });
+}
+// 'Addrole' PAGE FACTORY END
+// 'Rolelist' PAGE FACTORY START
+export function rolelistPagePreloading(): Promise<any> {
+  return import("./role/rolelist/rolelist.vue").catch((error) => {
+    return dealOccurred(error, "Rolelist");
+  });
+}
+// 'Rolelist' PAGE FACTORY END
 // 'Slideshowgoods' PAGE FACTORY START
 export function slideshowgoodsPagePreloading(): Promise<any> {
   return import("./slideshow/slideshowgoods/slideshowgoods.vue").catch(

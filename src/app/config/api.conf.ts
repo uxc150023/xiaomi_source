@@ -19,6 +19,8 @@ export const apiConfig: IApiConfig = {
     // ----------------------------------登录-----------------------------
     // 获取code
     loginCode: "apiHost:/admin/login/code",
+    // 获取角色
+    getRoles: "apiHost:/admin/role",
   },
   put: {
     // SGV-BUILD-API-PUT # NOT DELETE

@@ -173,6 +173,38 @@ const routes: RouteConfig[] = [
     ],
   },
 
+  {
+    path: "/roles",
+    component: PageFactory.layoutPagePreloading,
+    meta: {
+      title: "角色管理",
+      icon: "el-icon-user-solid",
+      active: "/roles",
+    },
+    children: [
+      {
+        path: "/rolelist",
+        name: "rolelist",
+        component: PageFactory.rolelistPagePreloading,
+        meta: {
+          title: "角色列表",
+          icon: "",
+          active: "/rolelist",
+        },
+      },
+      {
+        path: "/addrole",
+        name: "addrole",
+        component: PageFactory.addrolePagePreloading,
+        meta: {
+          title: "添加角色",
+          icon: "",
+          active: "/addrole",
+        },
+      },
+    ],
+  },
+
   { path: "*", redirect: "loginold" },
   {
     path: "/loginold",
