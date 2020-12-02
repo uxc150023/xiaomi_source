@@ -41,8 +41,8 @@ const webpackConfig = {
         process.env.NODE_ENV !== "production"
           ? "vue/dist/vue.js"
           : "vue/dist/vue.min.js",
-      "@": resolve("src"),
-      "@config": resolve("config"),
+      "@": path.resolve("src"),
+      "@config": path.resolve("config"),
       vue$: "vue/dist/vue.common.js",
     },
   },

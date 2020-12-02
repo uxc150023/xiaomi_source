@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Component, { mixins } from "vue-class-component";
 import { AutowiredService } from "../../../../lib/sg-resource/decorators";
+import { PaginationInfo } from "../../../core/domain/PaginationInfo";
 import { RoleService } from "../../../core/services/role.serv";
 import BasePage from "../../BasePage";
 
@@ -36,6 +37,8 @@ export default class RolelistPage extends mixins(BasePage)
   title: string = "Rolelist";
   @AutowiredService
   roleService: RoleService;
+
+  paginationInfo: PaginationInfo = new PaginationInfo();
   tableKey: number = 0;
   list: any[] = [];
   total: number = 0;
@@ -72,6 +75,7 @@ export default class RolelistPage extends mixins(BasePage)
   };
   downloadLoading: boolean = false;
   tempArticleData: any[] = [];
+  dialogVisible: boolean = true;
 
   fetchData() {
     this.getRoles();
@@ -79,9 +83,11 @@ export default class RolelistPage extends mixins(BasePage)
 
   async getRoles() {
     try {
-      const res = await this.roleService.getRoles();
-      this.list = res;
+      const res = await this.roleService.getRoles({ ...this.paginationInfo });
+      this.list = res.pageData;
       this.listLoading = false;
+      this.total = res.total;
+      this.paginationInfo.totalSize = res.totalSize;
     } catch (error) {
       this.listLoading = false;
       this.messageError(error);
@@ -116,6 +122,17 @@ export default class RolelistPage extends mixins(BasePage)
       : sort === `-${key}`
       ? "descending"
       : "";
+  }
+
+  handleChangePage(val: number) {
+    this.paginationInfo.pages = val;
+    this.fetchData();
+  }
+
+  handleSizeChange(val: number) {
+    this.paginationInfo.pages = 1;
+    this.paginationInfo.pageSize = val;
+    this.fetchData();
   }
 
   /* 生命钩子 START */

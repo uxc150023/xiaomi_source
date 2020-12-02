@@ -10,8 +10,8 @@ import {
   Watch,
 } from "vue-property-decorator";
 import { AutowiredService } from "../../../lib/sg-resource/decorators";
-import { AccountInfo } from "../../core/admain/AccountInfo";
 import { ComBaseComp } from "../../core/ComBaseComp";
+import { AccountInfo } from "../../core/domain/AccountInfo";
 import { SystemService } from "../../core/services/system.serv";
 import { SET_SIDEBAR } from "../../core/store/mutationTypes";
 

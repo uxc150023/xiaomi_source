@@ -3,7 +3,7 @@ import { BaseService } from "./base.serv";
 export interface IRoleService {
   // SGV-BUILD-SERVICE-INTERFACE # NOT DELETE
   login(userName: string, password: string): Promise<any>;
-  getRoles(): Promise<any>;
+  getRoles(params: any): Promise<any>;
 }
 
 type IRoleServiceConstructor = new () => IRoleService;
@@ -22,7 +22,7 @@ export class RoleService extends BaseService implements IRoleService {
   public login(userName: string, password: string): Promise<any> {
     return this.proxyHttp.post("login", { userName, password });
   }
-  public getRoles(): Promise<any> {
-    return this.proxyHttp.get("getRoles", {});
+  public getRoles(params: any): Promise<any> {
+    return this.proxyHttp.post("getRoles", params);
   }
 }

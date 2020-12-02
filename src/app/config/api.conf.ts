@@ -13,14 +13,14 @@ export const apiConfig: IApiConfig = {
     doLogin: "apiHost:/admin/login/doLogin",
     // 退出登录
     logOut: "apiHost:/admin/login/logOut",
+    // 获取角色
+    getRoles: "apiHost:/admin/role",
   },
   get: {
     // SGV-BUILD-API-GET # NOT DELETE
     // ----------------------------------登录-----------------------------
     // 获取code
     loginCode: "apiHost:/admin/login/code",
-    // 获取角色
-    getRoles: "apiHost:/admin/role",
   },
   put: {
     // SGV-BUILD-API-PUT # NOT DELETE

@@ -2,7 +2,7 @@ import Vue from "vue";
 import Component, { mixins } from "vue-class-component";
 import { Watch } from "vue-property-decorator";
 import { AutowiredService } from "../../../lib/sg-resource/decorators";
-import { Sidebar } from "../../core/admain/Sidebar";
+import { Sidebar } from "../../core/domain/Sidebar";
 import { SET_SIDEBAR } from "../../core/store/mutationTypes";
 import BasePage from "../BasePage";
 

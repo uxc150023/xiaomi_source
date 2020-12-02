@@ -2,7 +2,6 @@
 import Vue from "vue";
 
 // SGV-BUILD-COMP-FAC # NOT DELETE
-Vue.component("pagination", require("./pagination/pagination.vue").default);
 Vue.component("sidebar", require("./sidebar/sidebar.vue").default);
 Vue.component("breadcrumb", require("./breadcrumb/breadcrumb.vue").default);
 Vue.component("navbar", require("./navbar/navbar.vue").default);

@@ -1,9 +1,9 @@
 import { Message } from "element-ui";
 import Vue from "vue";
 import Vuex from "vuex";
-import { AccountInfo } from "../admain/AccountInfo";
-import { Sidebar } from "../admain/Sidebar";
 import { LOGIN_INFO } from "../constants";
+import { AccountInfo } from "../domain/AccountInfo";
+import { Sidebar } from "../domain/Sidebar";
 import {
   HEADER_TOKEN,
   SET_ACCOUNT_INFO,
