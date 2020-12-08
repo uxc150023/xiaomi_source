@@ -14,7 +14,11 @@ export const apiConfig: IApiConfig = {
     // 退出登录
     logOut: "apiHost:/admin/login/logOut",
     // 获取角色
-    getRoles: "apiHost:/admin/role",
+    getRoles: "apiHost:/admin/role/getRoles",
+    // 添加角色
+    addRole: "apiHost:/admin/role/addRole",
+    // 编辑角色
+    editorRole: "apiHost:/admin/role/update",
   },
   get: {
     // SGV-BUILD-API-GET # NOT DELETE
@@ -27,5 +31,6 @@ export const apiConfig: IApiConfig = {
   },
   delete: {
     // SGV-BUILD-API-DELETE # NOT DELETE
+    removeRole: "apiHost:/admin/role",
   },
 };

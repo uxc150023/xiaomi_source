@@ -1,5 +1,15 @@
 <template>
   <div class="page-module">
+    <div class="filter-container">
+      <el-button
+        class="filter-item"
+        type="primary"
+        icon="el-icon-edit"
+        @click="handleAdd"
+      >
+        添加
+      </el-button>
+    </div>
     <div class="page-modal-content">
       <el-table
         :key="tableKey"
@@ -63,16 +73,11 @@
           class-name="fixed-width"
         >
           <template slot-scope="{ row }">
-            <el-button type="primary" size="mini" @click="handleUpdate(row)">
-              aa
+            <el-button type="primary" size="mini" @click="editor(row)">
+              编辑
             </el-button>
-            <el-button
-              v-if="row.status !== 'published'"
-              size="mini"
-              type="success"
-              @click="handleModifyStatus(row, 'published')"
-            >
-              bb
+            <el-button size="mini" type="success" @click="removeRole(row)">
+              删除
             </el-button>
           </template>
         </el-table-column>
@@ -82,7 +87,6 @@
     <div class="common-pagination">
       <el-pagination
         v-show="list.length"
-        class="fr"
         background
         @size-change="handleSizeChange"
         @current-change="handleChangePage"
@@ -94,7 +98,7 @@
     </div>
 
     <el-dialog
-      title="批量操作"
+      :title="add ? '新增角色' : '角色编辑'"
       width="700px"
       :close-on-click-modal="false"
       :visible.sync="dialogVisible"
@@ -103,16 +107,32 @@
     >
       <el-form
         :rules="rules"
-        ref="gcpVisitUserInfo"
-        :model="gcpVisitUserInfo"
+        ref="roleInfo"
+        :model="roleInfo"
         label-width="100px"
         label-position="right"
         class="form-long-width"
       >
+        <el-form-item label="角色名称" prop="title">
+          <el-input type="text" v-model="roleInfo.title"></el-input>
+        </el-form-item>
+
+        <el-form-item label="角色描述" prop="description">
+          <el-input type="text" v-model="roleInfo.description"></el-input>
+        </el-form-item>
+
+        <el-form-item label="角色状态" prop="status">
+          <!-- <el-input type="text" v-model="roleInfo.status"></el-input> -->
+          <el-select v-model="roleInfo.status" placeholder="请选择角色状态">
+            <el-option label="0" value="0"></el-option>
+            <el-option label="1" value="1"></el-option>
+          </el-select>
+        </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="outerVisible = false">取 消</el-button>
-        <el-button type="primary" @click="innerVisible = true">确定</el-button>
+      <div slot="footer">
+        <el-button @click="isUserVisible = false">取消</el-button>
+        <el-button type="primary" @click="handleCommit()">添加</el-button>
+        <el-button type="primary" @click="handleSave()">保存</el-button>
       </div>
     </el-dialog>
   </div>
@@ -120,9 +140,9 @@
 <script lang="ts" src="./rolelist.ts"></script>
 <style lang="scss" scoped>
 .page-module {
-  padding: 10px 15px;
+  padding: 10px 15px 0 15px;
   .page-modal-content {
-    min-height: calc(100vh - 120px);
+    min-height: calc(100vh - 192px);
   }
 }
 </style>

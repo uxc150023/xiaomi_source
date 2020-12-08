@@ -1,3 +1,4 @@
+import { ElForm } from "element-ui/types/form";
 import Vue from "vue";
 import Component, { mixins } from "vue-class-component";
 import { AutowiredService } from "../../../../lib/sg-resource/decorators";
@@ -67,15 +68,16 @@ export default class RolelistPage extends mixins(BasePage)
   dialogPageviewsVisible: boolean = false;
   pageviewsData: any[] = [];
   rules = {
-    type: [{ required: true, message: "type is required", trigger: "change" }],
-    timestamp: [
-      { required: true, message: "timestamp is required", trigger: "change" },
-    ],
-    title: [{ required: true, message: "title is required", trigger: "blur" }],
+    description: [{ required: true, message: "必填", trigger: "blur" }],
+    status: [{ required: true, message: "必填", trigger: "change" }],
+    title: [{ required: true, message: "必填", trigger: "blur" }],
   };
   downloadLoading: boolean = false;
   tempArticleData: any[] = [];
-  dialogVisible: boolean = true;
+  dialogVisible: boolean = false;
+  add: boolean = true;
+
+  roleInfo: any = {};
 
   fetchData() {
     this.getRoles();
@@ -122,6 +124,60 @@ export default class RolelistPage extends mixins(BasePage)
       : sort === `-${key}`
       ? "descending"
       : "";
+  }
+
+  handleAdd() {
+    this.dialogVisible = true;
+  }
+
+  /**
+   * 新增
+   */
+  async handleCommit() {
+    try {
+      await this.roleService.addRole(this.roleInfo);
+      this.$message.success("角色添加成功");
+      this.fetchData();
+      this.dialogVisible = false;
+      (this.$refs.roleInfo as ElForm).resetFields();
+    } catch (error) {
+      this.messageError(error);
+    }
+  }
+
+  /**
+   * 编辑保存
+   */
+  async handleSave() {
+    try {
+      await this.roleService.editorRole(this.roleInfo);
+      this.$message.success("角色编辑成功");
+      this.fetchData();
+      this.dialogVisible = false;
+      (this.$refs.roleInfo as ElForm).resetFields();
+    } catch (error) {
+      this.messageError(error);
+    }
+  }
+
+  /**
+   * 删除
+   * @param row
+   */
+  async removeRole(row: any) {
+    try {
+      await this.roleService.removeRole(row._id);
+      this.$message.success("删除成功");
+      this.fetchData();
+    } catch (error) {
+      this.messageError(error);
+    }
+  }
+
+  editor(row: any) {
+    this.roleInfo = row;
+    this.dialogVisible = true;
+    this.add = false;
   }
 
   handleChangePage(val: number) {
